@@ -1,0 +1,13 @@
+.calendar-wrapper {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.rbc-calendar {
+  font-family: 'Inter', sans-serif;
+}
+
+.rbc-event {
+  background-color: #8B7FE8;
+} 
