@@ -1,11 +1,25 @@
 import Image from 'next/image'
-import dashboardMockup from '../path/to/dashboard.mockup.png'
 
+// If images are in the public folder
 <Image 
-  src="/dashboard.mockup.png"
+  src="/dashboard.mockup.png"  // Note: path starts from public directory
   alt="Dashboard mockup"
   width={500}
   height={300}
+  priority  // Add this for images above the fold
 /> 
 
-<img src={dashboardMockup} alt="Dashboard mockup" /> 
+// OR if images are imported
+import dashboardMockup from '@/public/dashboard.mockup.png'  // Update path
+// or
+import dashboardMockup from '../../public/dashboard.mockup.png'  // Adjust relative path
+
+console.log('Image path:', dashboardMockup) // Check if import works
+
+<Image 
+  src={dashboardMockup}
+  alt="Dashboard mockup"
+  width={500}
+  height={300}
+  priority
+/> 
