@@ -1,25 +1,29 @@
-import Image from 'next/image'
+'use client'
 
-// If images are in the public folder
-<Image 
-  src="/images/dashboard.mockup.png?v=1"
-  alt="Dashboard mockup"
-  width={500}
-  height={300}
-  priority  // Add this for images above the fold
-/> 
+import { useEffect } from 'react'
 
-// OR if images are imported
-import dashboardMockup from '@/public/dashboard.mockup.png'  // Update path
-// or
-import dashboardMockup from '../../public/dashboard.mockup.png'  // Adjust relative path
+// Remove the next/image import temporarily
+// import Image from 'next/image'
 
-console.log('Image path:', dashboardMockup) // Check if import works
+export default function ImageComponent() {
+  useEffect(() => {
+    // Debug log to check if component is mounting
+    console.log('Component mounted')
+  }, [])
 
-<Image 
-  src={dashboardMockup}
-  alt="Dashboard mockup"
-  width={500}
-  height={300}
-  priority
-/> 
+  return (
+    <div>
+      {/* Use regular img tags first to test */}
+      <img 
+        src="/dashboard.mockup.png" 
+        alt="Dashboard mockup"
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+      <img 
+        src="/solution-1.png" 
+        alt="Solution 1"
+        style={{ maxWidth: '100%', height: 'auto' }}
+      />
+    </div>
+  )
+} 

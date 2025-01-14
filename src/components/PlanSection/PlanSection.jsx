@@ -67,7 +67,7 @@ const PlanSection = () => {
         </div>
 
         <div className="plan-right">
-          <img src="/solution-3.png" alt="Planning Solution" className="plan-image" />
+          <img src="images/solution-3.png" alt="Planning Solution" className="plan-image" />
         </div>
       </div>
     </div>

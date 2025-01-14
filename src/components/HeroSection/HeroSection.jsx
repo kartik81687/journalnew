@@ -22,7 +22,7 @@ const HeroSection = () => {
         </div>
 
         <div className="hero-image-wrapper">
-          <img src="/dashboard-mockup.png" alt="Dashboard Preview" className="dashboard-preview" />
+          <img src="images/dashboard-mockup.png" alt="Dashboard Preview" className="dashboard-preview" />
         </div>
       </div>
 

@@ -53,7 +53,7 @@ const SolutionsSection = () => {
         </div>
 
         <div className="solutions-right">
-          <img src="/solution-1.png" alt="Calendar Solution" className="solution-image" />
+          <img src="images/solution-1.png" alt="Calendar Solution" className="solution-image" />
           {/* <div className="trusted-badge">
             <h4>Trusted by Customers</h4>
             <div className="count">10,000+</div>

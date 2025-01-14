@@ -6,7 +6,7 @@ const ClaritySection = () => {
     <div className="clarity-section">
       <div className="clarity-content">
         <div className="clarity-left">
-          <img src="/solution-2.png" alt="Journal Preview" className="clarity-image" />
+          <img src="images/solution-2.png" alt="Journal Preview" className="clarity-image" />
         </div>
 
         <div className="clarity-right">

@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: [], // Remove if not using external images
-    unoptimized: true, // Set to true for static exports
-  },
-  // Add this to help with asset handling
-  assetPrefix: '.',
+  // Remove all other config temporarily
   output: 'standalone',
 }
 
