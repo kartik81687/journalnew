@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 // If images are in the public folder
 <Image 
-  src="/dashboard.mockup.png"  // Note: path starts from public directory
+  src="/images/dashboard.mockup.png?v=1"
   alt="Dashboard mockup"
   width={500}
   height={300}
