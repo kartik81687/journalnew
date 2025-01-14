@@ -1,0 +1,11 @@
+import Image from 'next/image'
+import dashboardMockup from '../path/to/dashboard.mockup.png'
+
+<Image 
+  src="/dashboard.mockup.png"
+  alt="Dashboard mockup"
+  width={500}
+  height={300}
+/> 
+
+<img src={dashboardMockup} alt="Dashboard mockup" /> 
