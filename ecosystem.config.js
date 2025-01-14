@@ -4,12 +4,15 @@ module.exports = {
     script: "server.js",
     env: {
       NODE_ENV: "production",
-      PORT: 3000
+      PORT: 80
     },
-    instances: "max",
-    exec_mode: "cluster",
+    instances: 1,
+    exec_mode: "fork",
     autorestart: true,
     watch: false,
-    max_memory_restart: '1G'
+    max_memory_restart: '1G',
+    env_production: {
+      NODE_ENV: 'production'
+    }
   }]
 } 

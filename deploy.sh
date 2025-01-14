@@ -8,11 +8,9 @@ sudo apt-get upgrade -y
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-# Install PM2 globally if not installed
-sudo npm install -g pm2
-
 # Install dependencies
 npm install
+npm install --save helmet compression morgan
 
 # Build the React app
 npm run build
@@ -20,19 +18,12 @@ npm run build
 # Create .env file if it doesn't exist
 if [ ! -f .env ]; then
   cat > .env << EOL
-PORT=3000
+PORT=80
 NODE_ENV=production
-REACT_APP_API_URL=http://your-ec2-ip:3000
-PUBLIC_URL=http://your-ec2-ip:3000
+PUBLIC_URL=http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 REACT_APP_IMAGE_PATH=/images
-PM2_INSTANCES=max
-PM2_EXEC_MODE=cluster
 EOL
 fi
 
-# Start the server using PM2
-pm2 start ecosystem.config.js
-
-# Save PM2 process list and set up startup script
-pm2 save
-sudo pm2 startup 
+# Start the server
+node server.js 
