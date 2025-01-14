@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './ScrollingSections.css';
 
 const ScrollingSections = ({ children }) => {
@@ -7,53 +7,56 @@ const ScrollingSections = ({ children }) => {
   const containerRef = useRef(null);
   const sections = React.Children.toArray(children);
 
-  useEffect(() => {
+  const handleScroll = useCallback(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
-      const scrollPosition = container.scrollTop;
-      const windowHeight = window.innerHeight;
-      const scrollHeight = container.scrollHeight;
-      
-      // Calculate current section based on scroll position
-      const sectionIndex = Math.floor((scrollPosition + windowHeight / 2) / windowHeight);
-      setActiveSection(sectionIndex);
+    const scrollPosition = container.scrollTop;
+    const windowHeight = window.innerHeight;
+    const scrollHeight = container.scrollHeight;
+    
+    // Calculate current section based on scroll position
+    const sectionIndex = Math.floor((scrollPosition + windowHeight / 2) / windowHeight);
+    setActiveSection(sectionIndex);
 
-      // Hide progress when reaching the footer
-      const isNearBottom = scrollPosition + windowHeight >= scrollHeight - windowHeight;
-      if (isNearBottom) {
-        setHideProgress(true);
-        container.classList.add('end-reached');
-      } else {
-        setHideProgress(false);
-        container.classList.remove('end-reached');
-      }
+    // Hide progress when reaching the footer
+    const isNearBottom = scrollPosition + windowHeight >= scrollHeight - windowHeight;
+    if (isNearBottom) {
+      setHideProgress(true);
+      container.classList.add('end-reached');
+    } else {
+      setHideProgress(false);
+      container.classList.remove('end-reached');
+    }
 
-      // Update visibility of sections
-      sections.forEach((_, index) => {
-        const section = container.children[index];
-        if (section) {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.offsetHeight;
-          const isVisible = 
-            scrollPosition >= sectionTop - windowHeight / 2 &&
-            scrollPosition < sectionTop + sectionHeight - windowHeight / 2;
-          
-          if (isVisible) {
-            section.classList.add('visible');
-          } else {
-            section.classList.remove('visible');
-          }
+    // Update visibility of sections
+    sections.forEach((_, index) => {
+      const section = container.children[index];
+      if (section) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const isVisible = 
+          scrollPosition >= sectionTop - windowHeight / 2 &&
+          scrollPosition < sectionTop + sectionHeight - windowHeight / 2;
+        
+        if (isVisible) {
+          section.classList.add('visible');
+        } else {
+          section.classList.remove('visible');
         }
-      });
-    };
+      }
+    });
+  }, [sections]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
     container.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
     
     return () => container.removeEventListener('scroll', handleScroll);
-  }, [sections.length]);
+  }, [handleScroll]);
 
   const scrollToSection = (index) => {
     const container = containerRef.current;
